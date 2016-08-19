@@ -1,5 +1,7 @@
-// The constructor is nice and straightforward. The linked list has a length, and a head. The head will always contain the first node. 
-
+// The constructor is nice and straightforward. The linked list has a length, and a head. The head will always contain the first node.
+//
+//Refer to the presentation slides http://thinkful.slides.com/thinkful/linked-lists#
+//
 var LinkedList = function() {
   this.length = 0;
   this.head = null;
@@ -25,7 +27,9 @@ LinkedList.prototype.insert = function( index, value ) {
     // Find the node which we want to insert after
     var node = this._find( index - 1 );
     newNode.next = node.next;
+    // Make green arrow (new L's next) equal to red arrow (first L's next)
     node.next = newNode;
+    //This node.next refers to green arrow pointing at new 'L'
   }
   this.length++;
 };
@@ -37,4 +41,36 @@ LinkedList.prototype._find = function( index ) {
     node = node.next;
   }
   return node;
+};
+
+//
+// RETRIEVAL
+// Retrieves value using find method
+//
+LinkedList.prototype.get = function(index) {
+  if (index < 0 || index >= this.length) {
+    throw new Error('Index error');
+  }
+
+  return this._find(index).value;
+};
+
+//
+//REMOVAL
+//
+LinkedList.prototype.remove = function(index) {
+  if (index < 0 || index >= this.length) {
+    throw new Error('Index error');
+  }
+
+  if (index == 0) {
+    this.head = this.head.next;
+  }
+  else {
+    // Find the node before the one we want to remove
+    var node = this._find(index - 1); // The node preceeding what we want to remove
+    node.next = node.next.next; // The 'node' above changes its' node.next pointer to skip the deleted node
+  }
+
+  this.length--;
 };
