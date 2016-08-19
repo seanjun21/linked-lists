@@ -47,30 +47,66 @@ LinkedList.prototype._find = function( index ) {
 // RETRIEVAL
 // Retrieves value using find method
 //
-LinkedList.prototype.get = function(index) {
-  if (index < 0 || index >= this.length) {
-    throw new Error('Index error');
+LinkedList.prototype.get = function( index ) {
+  if ( index < 0 || index >= this.length ) {
+    throw new Error( 'Index error' );
   }
 
-  return this._find(index).value;
+  return this._find( index ).value;
 };
 
 //
 //REMOVAL
 //
-LinkedList.prototype.remove = function(index) {
-  if (index < 0 || index >= this.length) {
-    throw new Error('Index error');
+LinkedList.prototype.remove = function( index ) {
+  if ( index < 0 || index >= this.length ) {
+    throw new Error( 'Index error' );
   }
 
-  if (index == 0) {
+  if ( index == 0 ) {
     this.head = this.head.next;
-  }
-  else {
+  } else {
     // Find the node before the one we want to remove
-    var node = this._find(index - 1); // The node preceeding what we want to remove
+    var node = this._find( index - 1 ); // The node preceeding what we want to remove
     node.next = node.next.next; // The 'node' above changes its' node.next pointer to skip the deleted node
   }
 
   this.length--;
 };
+
+
+// Write an algorithm to find the middle element of a linked list
+// [{value: H, next: X}, {E}, {L}, {L}, {O}]
+LinkedList.prototype.middleElement = function() {
+  return this._find( Math.floor( this.length / 2 ) ).value;
+};
+
+// Write an algorithm to find the third element from the end of a linked list
+LinkedList.prototype.thirdElementEnd = function() {
+  return this._find( this.length - 2 ).value;
+};
+
+// Write an algorithm to reverse a linked list
+LinkedList.prototype.reverse = function() {
+  while() {
+    var newNode = {
+      value: value
+    };
+  }
+//H-E-L-L-O
+// O-L-L-E-H
+  // newNode = this.head; //
+  // node.next = this.head; /
+  // newNode = this.head /
+  // this.head = node.next /
+  // newNode = this.head /
+  
+
+  // node.next = newNode
+
+
+  newNode.next = this.head;
+  this.head = newNode;
+};
+
+// Write an algorithm to find whether a linked list has a cycle (i.e. whether a node in the list has its next value pointing to an earlier node in the list)
